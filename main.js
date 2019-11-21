@@ -38,5 +38,8 @@ const app = new Vue({
         is_fav: false
       },
     ]
+  },
+  methods: {
+    logTheFood: (key)=> console.log(key+' now your logging food'),
   }
 });

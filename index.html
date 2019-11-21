@@ -10,7 +10,7 @@
 			<h1 style="display:block;width:100%; text-align:center;">{{title}}</h1>
 			<h2 style="display:block;width:100%; text-align:center;">{{subtitle}}</h2>
 			<div v-for="food in foods" id="apple" style="margin:10px;border: 2px solid black; width: 219px; display:flex;flex-direction:row; flex-wrap:wrap;">
-				<img :src="food.img_url" style="overflow:hidden;width:100%;">
+				<img @mouseover="logTheFood(food.img_url)" :src="food.img_url" style="overflow:hidden;width:100%;">
 				<p style="font-weight: bold;display:block; width:100%;">{{food.name}}</p>
 
 				<p style="display:block; width:100%;">{{food.description}}</p>
@@ -18,6 +18,9 @@
 				
 				<p v-show="food.is_fav">Star (a favorite)</p>
 				<p v-show="!food.is_fav">Not a Star (not a fan)</p>
+				<h5>Button will 'sloppily' toggle favoriteness</h5>
+				<button v-on:click="food.is_fav=false" v-show="food.is_fav">Star (a favorite)</button>
+				<button v-on:click="food.is_fav=true" v-show="!food.is_fav">Not a Star (not a fan)</button>
 
 				
 				Conditional Rendering:&nbsp;
