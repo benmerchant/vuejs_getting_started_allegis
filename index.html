@@ -6,9 +6,27 @@
 	</head>
 	<body>
 
-		<div id="some_vue_app">
-			<h1>This is Some View App</h1>
-			<h2>This app was made to learn Vue.js more better</h2>
+		<div id="some-vue-app" style="display:flex; flex-direction:row; flex-wrap:wrap; align-content:center;">
+			<h1 style="display:block;width:100%; text-align:center;">{{title}}</h1>
+			<h2 style="display:block;width:100%; text-align:center;">{{subtitle}}</h2>
+			<div v-for="food in foods" id="apple" style="margin:10px;border: 2px solid black; width: 219px; display:flex;flex-direction:row; flex-wrap:wrap;">
+				<img :src="food.img_url" style="overflow:hidden;width:100%;">
+				<p style="font-weight: bold;display:block; width:100%;">{{food.name}}</p>
+
+				<p style="display:block; width:100%;">{{food.description}}</p>
+				
+				
+				<p v-show="food.is_fav">Star (a favorite)</p>
+				<p v-show="!food.is_fav">Not a Star (not a fan)</p>
+
+				
+				Conditional Rendering:&nbsp;
+				<span v-if="food.coolness_factor > 21">Very</span>
+				<span v-if="food.coolness_factor <= 21 && food.coolness_factor >=11">Pretty</span>
+				<span v-if="food.coolness_factor < 11 && food.coolness_factor > 0">Kinda</span>
+				<span v-if="food.coolness_factor === 0">NOT</span>
+				&nbsp;Cool
+			</div>
 		</div>
 
 		<script src="vue_2.6.10.js"></script>
