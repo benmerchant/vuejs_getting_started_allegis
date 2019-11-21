@@ -8,6 +8,7 @@ const app = new Vue({
   data: {
     title: 'This is Some View App',
     subtitle: 'This app was made to learn Vue.js more better',
+    favorites: 0,
     foods: [
       {
         name: 'apple',
@@ -41,5 +42,17 @@ const app = new Vue({
   },
   methods: {
     logTheFood: (key)=> console.log(key+' now your logging food'),
+    toggleAndCountFaves: function(theFood, favBool) {
+        // console.log(this.foods);
+        
+        let counter = 0;
+
+        for(let [key,value] of Object.entries(this.foods)){
+          if(value.name===theFood) value.is_fav=favBool;
+          if(value.is_fav) counter++
+        }
+        this.favorites = counter;
+      }
+    }
   }
-});
+);
