@@ -1,0 +1,39 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Let's Go View</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+
+		<div id="some-vue-app" style="display:flex; flex-direction:row; flex-wrap:wrap; align-content:center;">
+			<h1 style="display:block;width:100%; text-align:center;">{{title}}</h1>
+			<h2 style="display:block;width:100%; text-align:center;">{{subtitle}}</h2>
+			<h2 style="display:block;width:100%; text-align:center;">{{`Number of FAVES: ${favorites}`}}</h2>
+			<div v-for="food in foods" id="apple" style="margin:10px;border: 2px solid black; width: 219px; display:flex;flex-direction:row; flex-wrap:wrap;">
+				<img @mouseover="logTheFood(food.img_url)" :src="food.img_url" style="overflow:hidden;width:100%;">
+				<p style="font-weight: bold;display:block; width:100%;">{{food.name}}</p>
+
+				<p style="display:block; width:100%;">{{food.description}}</p>
+				
+				
+				<p v-show="food.is_fav">Star (a favorite)</p>
+				<p v-show="!food.is_fav">Not a Star (not a fan)</p>
+				<h5>Button will 'sloppily' toggle favoriteness</h5>
+				<button v-on:click="toggleAndCountFaves(food.name,false)" v-show="food.is_fav">Star (a favorite)</button>
+				<button v-on:click="toggleAndCountFaves(food.name,true)" v-show="!food.is_fav">Not a Star (not a fan)</button>
+
+				
+				Conditional Rendering:&nbsp;
+				<span v-if="food.coolness_factor > 21">Very</span>
+				<span v-if="food.coolness_factor <= 21 && food.coolness_factor >=11">Pretty</span>
+				<span v-if="food.coolness_factor < 11 && food.coolness_factor > 0">Kinda</span>
+				<span v-if="food.coolness_factor === 0">NOT</span>
+				&nbsp;Cool
+			</div>
+		</div>
+
+		<script src="vue_2.6.10.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>
